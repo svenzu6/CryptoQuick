@@ -5,5 +5,4 @@ export default configureStore({
     reducer: {
         [musicApi.reducerPath]: musicApi.reducer,
     },
-
 });
