@@ -1,8 +1,9 @@
-import {configureStore} from '@reduxjs/toolkit'; 
-import { musicApi } from '../services/musicApi';
+import { configureStore } from '@reduxjs/toolkit'
+
+import { musicApi } from '../api/musicApi'
 
 export default configureStore({
     reducer: {
         [musicApi.reducerPath]: musicApi.reducer,
     },
-});
+})
