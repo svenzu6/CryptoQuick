@@ -9,8 +9,8 @@ import {News, Homepage, Hot, Artists} from './components'
 const App = () => {
     return (
         <div className= 'app'>
-            <div className='navbar'>``
-            <Navbar />
+            <div className='navbar'>
+                <Navbar />
                 </div>
                 <div className='main'>
                     <Layout>
