@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Button, Menu, Typography, Avatar } from 'antd';
+import { Menu, Typography, Avatar } from 'antd';
 
 import {Link} from 'react-router-dom' ;
 import icon from '../images/music.png'
@@ -12,10 +12,7 @@ const Navbar = () => {
                 <Avatar src={icon} size='large'/>
                 <Typography.Title level={2}>
                     <Link to= '/' >music app</Link>
-                </Typography.Title>
-                {/* <Button className='menu-control-container'>
-
-                </Button> */}
+                </Typography.Title>   
             </div>
             <Menu theme='dark'>
                 <Menu.Item icon={<HomeOutlined/>}>
