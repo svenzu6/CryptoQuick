@@ -5,29 +5,34 @@ import {
 } from 'antd'
 import React from 'react'
 import {
-    Link,
     Route,
     Switch,
 } from 'react-router-dom'
 
-import './App.css'
 import Navbar from './components/Navbar'
-import {
-    Artists,
-    Homepage,
-    Hot,
-    News,
-} from './modules'
+import { Homepage } from './modules'
 
 const App = () => {
+    const { Content, Footer, Header, Sider } = Layout
+
     return (
-        <div className="app">
-            <div className="navbar">
+        <Layout style={{ height: '100vh' }}>
+            <Sider
+                breakpoint="lg"
+                collapsedWidth="0"
+            >
                 <Navbar />
-            </div>
-            <div className="main">
-                <Layout>
-                    <div className="routes">
+            </Sider>
+            <Layout>
+                <Header
+                    className="site-layout-sub-header-background"
+                    style={{ padding: 0 }}
+                />
+                <Content style={{ margin: '24px 16px 0' }}>
+                    <div
+                        className="site-layout-background"
+                        style={{ minHeight: 360, padding: 24 }}
+                    >
                         <Switch>
                             <Route
                                 exact={true}
@@ -35,57 +40,11 @@ const App = () => {
                             >
                                 <Homepage />
                             </Route>
-                            <Route
-                                exact={true}
-                                path="/hot"
-                            >
-                                <Hot />
-                            </Route>
-                            <Route
-                                exact={true}
-                                path="/artists"
-                            >
-                                <Artists />
-                            </Route>
-                            <Route
-                                exact={true}
-                                path="/news"
-                            >
-                                <News />
-                            </Route>
                         </Switch>
                     </div>
-                </Layout>
-
-                <div className="footer">
-                    <Typography.Title
-                        level={5}
-                        style={{ color: 'white', textAlign: 'center' }}
-                    >
-                        Copyright © 2021
-                        <Link to="/">
-                            Music App
-                        </Link>
-                        {' '}
-                        <br />
-                        All Rights Reserved.
-                    </Typography.Title>
-                    <Space>
-                        <Link to="/">
-                            Home
-                        </Link>
-                        <Link to="/hot">
-                            Hot
-                        </Link>
-                        <Link to="/news">
-                            News
-                        </Link>
-                    </Space>
-
-                </div>
-            </div>
-
-        </div>
+                </Content>
+            </Layout>
+        </Layout>
     )
 }
 

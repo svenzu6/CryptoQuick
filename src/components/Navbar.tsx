@@ -1,9 +1,4 @@
-import {
-    BulbOutlined,
-    CrownOutlined,
-    FundOutlined,
-    HomeOutlined,
-} from '@ant-design/icons'
+import { HomeOutlined } from '@ant-design/icons'
 import {
     Avatar,
     Menu,
@@ -30,21 +25,6 @@ const Navbar = () => {
                 <Menu.Item icon={<HomeOutlined />}>
                     <Link to="/">
                         Home
-                    </Link>
-                </Menu.Item>
-                <Menu.Item icon={<FundOutlined />}>
-                    <Link to="/hot">
-                        Hot
-                    </Link>
-                </Menu.Item>
-                <Menu.Item icon={<CrownOutlined />}>
-                    <Link to="/artists">
-                        Artists
-                    </Link>
-                </Menu.Item>
-                <Menu.Item icon={<BulbOutlined />}>
-                    <Link to="/news">
-                        News
                     </Link>
                 </Menu.Item>
             </Menu>
