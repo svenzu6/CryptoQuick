@@ -1,8 +1,4 @@
-import {
-    Layout,
-    Space,
-    Typography,
-} from 'antd'
+import { Layout } from 'antd'
 import React from 'react'
 import {
     Route,
@@ -13,7 +9,7 @@ import Navbar from './components/Navbar'
 import { Homepage } from './modules'
 
 const App = () => {
-    const { Content, Footer, Header, Sider } = Layout
+    const { Content, Header, Sider } = Layout
 
     return (
         <Layout style={{ height: '100vh' }}>
