@@ -1,46 +1,38 @@
-import { Layout } from 'antd'
-import React from 'react'
+import { CssBaseline } from '@mui/material'
 import {
-    Route,
-    Switch,
-} from 'react-router-dom'
+    grey,
+    pink,
+} from '@mui/material/colors'
+import {
+    createTheme,
+    ThemeProvider,
+} from '@mui/material/styles'
 
-import Navbar from './components/Navbar'
 import { Homepage } from './modules'
+import { Authorization } from './redux/Authorization'
 
+const theme = createTheme({
+    palette: {
+        primary: {
+
+            main: pink[100],
+        },
+        secondary: {
+            main: grey[900],
+        },
+    },
+})
 const App = () => {
-    const { Content, Header, Sider } = Layout
-
     return (
-        <Layout style={{ height: '100vh' }}>
-            <Sider
-                breakpoint="lg"
-                collapsedWidth="0"
-            >
-                <Navbar />
-            </Sider>
-            <Layout>
-                <Header
-                    className="site-layout-sub-header-background"
-                    style={{ padding: 0 }}
-                />
-                <Content style={{ margin: '24px 16px 0' }}>
-                    <div
-                        className="site-layout-background"
-                        style={{ minHeight: 360, padding: 24 }}
-                    >
-                        <Switch>
-                            <Route
-                                exact={true}
-                                path="/"
-                            >
-                                <Homepage />
-                            </Route>
-                        </Switch>
-                    </div>
-                </Content>
-            </Layout>
-        </Layout>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+
+            <main>
+                <Homepage />
+                <Authorization />
+            </main>
+        </ThemeProvider>
+
     )
 }
 
