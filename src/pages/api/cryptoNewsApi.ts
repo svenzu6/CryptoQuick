@@ -12,7 +12,7 @@ import type {
 const cryptoNewsHeaders = {
     'x-bingapis-sdk': 'true',
     'x-rapidapi-host': 'bing-news-search1.p.rapidapi.com',
-    'x-rapidapi-key': '526b16a8cemsh211dbc87d555257p1d96dejsna2c888420efc',
+    'x-rapidapi-key': process.env.NEXT_PUBLIC_API_KEY,
 }
 
 const baseUrl = 'https://bing-news-search1.p.rapidapi.com'
