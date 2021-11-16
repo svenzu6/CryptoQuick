@@ -1,18 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
-import { spotifyApi } from '../api/spotifyApi'
-
-import authorizationReducer from './oauthConfig'
+import { cryptoApi } from '../pages/api/cryptoApi'
+import { cryptoNewsApi } from '../pages/api/cryptoNewsApi'
 
 export const store = configureStore({
-    middleware: (getDefaultMiddleware) => {
-        return [...getDefaultMiddleware(), spotifyApi.middleware]
-    },
+    middleware: (getDefaultMiddleware) =>
+        [...getDefaultMiddleware(), cryptoApi.middleware],
     reducer: {
-        [spotifyApi.reducerPath]: spotifyApi.reducer,
-        authorization: authorizationReducer,
-
+        [cryptoApi.reducerPath]: cryptoApi.reducer,
+        [cryptoNewsApi.reducerPath]: cryptoNewsApi.reducer,
     },
 })
 

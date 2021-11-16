@@ -1,5 +1,3 @@
 export const CONSTANTS = {
-    authUrl: 'https://accounts.spotify.com/api/token',
-    baseUrl: 'https://api.spotify.com/v1/',
-
+    baseUrl: 'https://l4chsalter-alternative-me-crypto-v1.p.rapidapi.com/v2/',
 }

@@ -24,4 +24,4 @@ yarn-error.log*
 .env
 
 
-src/variables.ts
+.next
