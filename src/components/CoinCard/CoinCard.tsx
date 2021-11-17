@@ -7,12 +7,13 @@ import {
     Grid,
     Typography,
 } from '@mui/material'
+import millify from 'millify'
 import * as React from 'react'
 
 import type { CoinCardProps } from './CoinCard.types'
 
 export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
-    const { name, price, rank } = props
+    const { change, market_cap, name, price, rank } = props
 
     return (
         <Grid
@@ -39,6 +40,7 @@ export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
                             >
                                 {rank}
                                 .
+                                {' '}
                                 {name}
                             </Typography>
                         )}
@@ -50,7 +52,8 @@ export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
                                 variant="body2"
                             >
                                 Price:
-                                {price}
+                                {millify(price)}
+                                $
                             </Typography>
                             <Typography
                                 color="text.secondary"
@@ -61,6 +64,7 @@ export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
                                 variant="body2"
                             >
                                 Market Cap:
+                                {millify(market_cap)}
                             </Typography>
                             <Typography
                                 color="text.secondary"
@@ -70,14 +74,15 @@ export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
                                 color="text.primary"
                                 variant="body2"
                             >
-                                Daily Change
+                                Daily Change:
+                                {millify(change)}
+                                {' '}
+                                %
                             </Typography>
                             <Typography
                                 color="text.secondary"
                                 variant="body2"
-                            >
-                                %
-                            </Typography>
+                            />
                         </Grid>
                     </CardContent>
                 </CardActionArea>

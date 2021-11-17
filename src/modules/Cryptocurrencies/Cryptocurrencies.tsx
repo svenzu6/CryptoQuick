@@ -5,6 +5,8 @@ import { useGetCryptosQuery } from '../../pages/api/cryptoApi'
 
 export const Cryptocurrencies: React.FunctionComponent = () => {
     const response = useGetCryptosQuery(100)
+    // eslint-disable-next-line no-console
+    console.log(response.data?.data)
 
     if (response.isLoading) {
         return (
@@ -29,7 +31,9 @@ export const Cryptocurrencies: React.FunctionComponent = () => {
 
                 return (
                     <CoinCard
+                        change={quotes.USD.percent_change_24h}
                         key={id}
+                        market_cap={quotes.USD.market_cap}
                         name={name}
                         price={quotes.USD.price}
                         rank={rank}

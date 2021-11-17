@@ -1,7 +1,7 @@
 type QuoteMetadata = {
     price: number
     market_cap: number
-    percentage_change_24h: number
+    percent_change_24h: number
 }
 
 type QuoteType = {

@@ -3,4 +3,6 @@ export type CoinCardProps = {
     rank: number
     price: number
     symbol: string
+    market_cap: number
+    change: number
 }

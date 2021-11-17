@@ -1,13 +1,20 @@
 import {
+    Grid,
     Link,
     Stack,
     Typography,
 } from '@mui/material'
 import { Box } from '@mui/system'
+import React from 'react'
+
+import { CoinCard } from '../../components/CoinCard'
+import { useGetCryptosQuery } from '../../pages/api/cryptoApi'
 
 import { HomepageStats } from './HomepageStats'
 
 export const Homepage = () => {
+    const response = useGetCryptosQuery(10)
+
     return (
         <Box>
             <HomepageStats />
@@ -34,6 +41,31 @@ export const Homepage = () => {
                     </Link>
                 </Typography>
             </Stack>
+            <Grid
+                alignItems="center"
+                container={true}
+                direction="row"
+                justifyContent="center"
+                p={10}
+                rowSpacing={2}
+                spacing={5}
+            >
+                {response.data?.data.map((coin) => {
+                    const { id, name, quotes, rank, symbol } = coin
+
+                    return (
+                        <CoinCard
+                            change={quotes.USD.percent_change_24h}
+                            key={id}
+                            market_cap={quotes.USD.market_cap}
+                            name={name}
+                            price={quotes.USD.price}
+                            rank={rank}
+                            symbol={symbol}
+                        />
+                    )
+                })}
+            </Grid>
         </Box>
     )
 }
