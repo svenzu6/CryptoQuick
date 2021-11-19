@@ -49,12 +49,16 @@ export const Navigation = () => {
                 }}
                 variant="dense"
             >
-                <Breadcrumbs>
+                <Breadcrumbs aria-label="breadcrumb">
                     <Breadcrumb
+                        component="a"
+                        href="/"
                         icon={<HomeIcon fontSize="small" />}
                         label="Home"
                     />
                     <Breadcrumb
+                        component="a"
+                        href="/cryptocurrencies"
                         icon={<AttachMoneyIcon fontSize="small" />}
                         label="Cryptocurrencies"
                     />

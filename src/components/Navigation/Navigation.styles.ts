@@ -22,4 +22,4 @@ export const Breadcrumb = styled(Chip)(({ theme }) => {
         fontWeight: theme.typography.fontWeightRegular,
         height: theme.spacing(3),
     }
-})
+}) as typeof Chip

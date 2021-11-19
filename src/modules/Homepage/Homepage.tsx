@@ -57,6 +57,7 @@ export const Homepage = () => {
                         <CoinCard
                             change={quotes.USD.percent_change_24h}
                             key={id}
+                            logo="12312"
                             market_cap={quotes.USD.market_cap}
                             name={name}
                             price={quotes.USD.price}

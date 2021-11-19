@@ -1,14 +1,13 @@
 import { Grid } from '@mui/material'
+import React from 'react'
 
 import { CoinCard } from '../../components/CoinCard'
 import { useGetCryptosQuery } from '../../pages/api/cryptoApi'
 
 export const Cryptocurrencies: React.FunctionComponent = () => {
-    const response = useGetCryptosQuery(100)
-    // eslint-disable-next-line no-console
-    console.log(response.data?.data)
+    const { data, isLoading } = useGetCryptosQuery(40)
 
-    if (response.isLoading) {
+    if (isLoading) {
         return (
             <p>
                 Loading
@@ -26,7 +25,7 @@ export const Cryptocurrencies: React.FunctionComponent = () => {
             rowSpacing={2}
             spacing={5}
         >
-            {response.data?.data.map((coin) => {
+            {data?.data?.map((coin) => {
                 const { id, name, quotes, rank, symbol } = coin
 
                 return (
