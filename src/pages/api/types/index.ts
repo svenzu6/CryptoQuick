@@ -1,1 +1,1 @@
-export * from './getCryptos'
+export * from './getList'

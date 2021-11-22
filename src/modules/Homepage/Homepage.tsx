@@ -8,12 +8,12 @@ import { Box } from '@mui/system'
 import React from 'react'
 
 import { CoinCard } from '../../components/CoinCard'
-import { useGetCryptosQuery } from '../../pages/api/cryptoApi'
+import { useGetListQuery } from '../../pages/api/geckoApi'
 
 import { HomepageStats } from './HomepageStats'
 
 export const Homepage = () => {
-    const response = useGetCryptosQuery(10)
+    const { data } = useGetListQuery('10')
 
     return (
         <Box>
@@ -50,19 +50,18 @@ export const Homepage = () => {
                 rowSpacing={2}
                 spacing={5}
             >
-                {response.data?.data.map((coin) => {
-                    const { id, name, quotes, rank, symbol } = coin
+                {data?.map((coin) => {
+                    const { current_price, id, image, market_cap, market_cap_change_24h, market_cap_rank, name } = coin
 
                     return (
                         <CoinCard
-                            change={quotes.USD.percent_change_24h}
+                            change={market_cap_change_24h}
+                            image={image}
                             key={id}
-                            logo="12312"
-                            market_cap={quotes.USD.market_cap}
+                            market_cap={market_cap}
                             name={name}
-                            price={quotes.USD.price}
-                            rank={rank}
-                            symbol={symbol}
+                            price={current_price}
+                            rank={market_cap_rank}
                         />
                     )
                 })}

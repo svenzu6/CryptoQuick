@@ -5,16 +5,16 @@ import {
 
 import { geckoRequest } from '../../utils'
 
-import type { GetGeckoType } from './types/getGecko'
+import type { GetListType } from './types/getList'
 
 export const geckoApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://api.coingecko.com/api/v3/coins' }),
     endpoints: (builder) => ({
-        getGecko: builder.query <GetGeckoType, string>({
-            query: (coinId) => geckoRequest(`${coinId}`),
+        getList: builder.query<GetListType, string>({
+            query: (count) => geckoRequest(`/markets?vs_currency=usd&order=market_cap_desc&per_page=${count}&page=1`),
         }),
     }),
     reducerPath: 'geckoApi',
 })
 
-export const { useGetGeckoQuery } = geckoApi
+export const { useGetListQuery } = geckoApi
