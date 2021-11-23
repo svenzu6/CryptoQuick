@@ -6,6 +6,7 @@ import { useGetListQuery } from '../../pages/api/geckoApi'
 
 export const Cryptocurrencies: React.FunctionComponent = () => {
     const { data } = useGetListQuery('100')
+    console.log(data)
 
     return (
         <Grid
@@ -18,11 +19,12 @@ export const Cryptocurrencies: React.FunctionComponent = () => {
             spacing={5}
         >
             {data?.map((coin) => {
-                const { current_price, id, image, market_cap, market_cap_change_24h, market_cap_rank, name } = coin
+                const { current_price, id, image, market_cap,
+                    market_cap_change_percentage_24h, market_cap_rank, name } = coin
 
                 return (
                     <CoinCard
-                        change={market_cap_change_24h}
+                        change={market_cap_change_percentage_24h}
                         image={image}
                         key={id}
                         market_cap={market_cap}
