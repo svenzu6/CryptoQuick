@@ -5,9 +5,13 @@ import {
 } from '@mui/material'
 import React from 'react'
 
+import { useGetGlobalQuery } from '../../../pages/api/geckoApi'
 import { HomepageStatsCard } from '../HomepageStatsCard'
 
 export const HomepageStats = () => {
+    const { data } = useGetGlobalQuery()
+    console.log(data)
+
     return (
         <Box
             sx={{
@@ -29,24 +33,25 @@ export const HomepageStats = () => {
                 <Grid container={true}>
                     <HomepageStatsCard
                         title="Total Coins"
-                        value="10"
-                    />
-                    <HomepageStatsCard
-                        title="Total Exchanges"
-                        value="10"
-                    />
-                    <HomepageStatsCard
-                        title="Total 24h Volume"
-                        value="10"
-                    />
-                    <HomepageStatsCard
-                        title="Total Market Cap"
-                        value="10"
+                        value={data?.data?.active_cryptocurrencies}
                     />
                     <HomepageStatsCard
                         title="Total Markets"
-                        value="10"
+                        value={data?.data.markets}
                     />
+                    <HomepageStatsCard
+                        title="Total Exchanges"
+                        value={10}
+                    />
+                    <HomepageStatsCard
+                        title="Total 24h Volume"
+                        value={23}
+                    />
+                    <HomepageStatsCard
+                        title="Total Market Cap"
+                        value={23}
+                    />
+
                 </Grid>
             </Paper>
         </Box>
