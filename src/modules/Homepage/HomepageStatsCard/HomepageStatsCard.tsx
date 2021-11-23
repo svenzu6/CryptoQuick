@@ -16,7 +16,7 @@ export const HomepageStatsCard: React.FunctionComponent<HomepageStatsCardProps> 
         >
             <Box
                 sx={{
-                    p: { md: 6, xs: 3 },
+                    p: { md: 2, xs: 3 },
                     textAlign: 'center',
                 }}
             >

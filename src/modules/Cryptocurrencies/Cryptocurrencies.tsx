@@ -53,7 +53,6 @@ export const Cryptocurrencies: React.FunctionComponent = () => {
                 justifyContent="center"
                 p={10}
                 rowSpacing={2}
-                spacing={5}
             >
                 {cryptos?.map((coin) => {
                     const { current_price, id, image, market_cap,

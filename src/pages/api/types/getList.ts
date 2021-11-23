@@ -1,5 +1,4 @@
-export type GetListType= Array<{
-    image: string
+export type GetListType= Array<{ image: string
     market_cap_change_percentage_24h: number
     market_cap_rank: number
     name: string
@@ -7,3 +6,5 @@ export type GetListType= Array<{
     market_cap: number
     id: string
 }>
+
+}

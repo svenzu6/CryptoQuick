@@ -26,11 +26,13 @@ export const HomepageStats = () => {
                     backgroundColor: 'grey.800',
                     color: '#fff',
                     display: 'flex',
-                    maxWidth: 800,
                     padding: 3,
+                    width: 800,
                 }}
             >
-                <Grid container={true}>
+                <Grid
+                    container={true}
+                >
                     <HomepageStatsCard
                         title="Total Coins"
                         value={data?.data?.active_cryptocurrencies}
@@ -43,15 +45,6 @@ export const HomepageStats = () => {
                         title="Total Exchanges"
                         value={10}
                     />
-                    <HomepageStatsCard
-                        title="Total 24h Volume"
-                        value={23}
-                    />
-                    <HomepageStatsCard
-                        title="Total Market Cap"
-                        value={23}
-                    />
-
                 </Grid>
             </Paper>
         </Box>
