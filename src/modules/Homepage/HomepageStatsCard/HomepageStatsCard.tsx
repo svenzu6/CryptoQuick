@@ -16,7 +16,10 @@ export const HomepageStatsCard: React.FunctionComponent<HomepageStatsCardProps> 
         >
             <Box
                 sx={{
-                    p: { md: 2, xs: 3 },
+                    p: {
+                        md: 2,
+                        xs: 3,
+                    },
                     textAlign: 'center',
                 }}
             >
@@ -24,7 +27,7 @@ export const HomepageStatsCard: React.FunctionComponent<HomepageStatsCardProps> 
                     {title}
                 </Typography>
                 <Typography variant="h6">
-                    {value}
+                    {value ?? 'N/A'}
                 </Typography>
             </Box>
         </Grid>

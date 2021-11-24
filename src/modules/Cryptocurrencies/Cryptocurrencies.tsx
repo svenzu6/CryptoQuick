@@ -4,27 +4,34 @@ import {
     Grid,
     TextField,
 } from '@mui/material'
-import React, {
-    useEffect,
-    useState,
-} from 'react'
+import React, { useState } from 'react'
 
 import { CoinCard } from '../../components/CoinCard'
 import { useGetListQuery } from '../../pages/api/geckoApi'
-import type { GetListType } from '../../pages/api/types'
+import type { CoinType } from '../../pages/api/types'
 
 export const Cryptocurrencies: React.FunctionComponent = () => {
-    const { data, isLoading } = useGetListQuery('100')
-    console.log(data)
-    const [cryptos, setCryptos] = useState<GetListType[]>([])
-    const [searchTerm, setSearchTerm] = useState('')
+    const { data, isLoading } = useGetListQuery(100)
 
-    useEffect(() => {
-        const filteredData = data?.filter((item) => item.name.toLowerCase().includes(searchTerm))
+    const [cryptos, setCryptos] = useState<CoinType[]>(data ?? [])
+
+    React.useEffect(() => {
+        if (data) {
+            setCryptos(data)
+        }
+    }, [data])
+
+    const onSearch = (event: React.ChangeEvent<{ value: string }>) => {
+        const filteredData = data?.filter((item) => {
+            return item.name.toLowerCase().includes(event.target.value)
+        }) ?? []
+
         setCryptos(filteredData)
-    }, [data, searchTerm])
+    }
 
-    if (isLoading) return (<CircularProgress />)
+    if (isLoading) {
+        return (<CircularProgress />)
+    }
 
     return (
         <>
@@ -39,9 +46,7 @@ export const Cryptocurrencies: React.FunctionComponent = () => {
                 <TextField
                     id="outlined-basic"
                     label="Search Crypto"
-                    onChange={(event) => {
-                        setSearchTerm(event.target.value.toLowerCase())
-                    }}
+                    onChange={onSearch}
                     size="small"
                     variant="outlined"
                 />
@@ -55,18 +60,10 @@ export const Cryptocurrencies: React.FunctionComponent = () => {
                 rowSpacing={2}
             >
                 {cryptos?.map((coin) => {
-                    const { current_price, id, image, market_cap,
-                        market_cap_change_percentage_24h, market_cap_rank, name } = coin
-
                     return (
                         <CoinCard
-                            change={market_cap_change_percentage_24h}
-                            image={image}
-                            key={id}
-                            market_cap={market_cap}
-                            name={name}
-                            price={current_price}
-                            rank={market_cap_rank}
+                            coin={coin}
+                            key={coin.id}
                         />
                     )
                 })}

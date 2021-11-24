@@ -10,6 +10,7 @@ export const store = configureStore({
         [geckoApi.reducerPath]: geckoApi.reducer,
     },
 })
+
 setupListeners(store.dispatch)
 
 export type RootState = ReturnType<typeof store.getState>

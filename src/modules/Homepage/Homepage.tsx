@@ -13,7 +13,7 @@ import { useGetListQuery } from '../../pages/api/geckoApi'
 import { HomepageStats } from './HomepageStats'
 
 export const Homepage = () => {
-    const { data } = useGetListQuery('10')
+    const { data } = useGetListQuery(10)
 
     return (
         <Box>
@@ -51,18 +51,10 @@ export const Homepage = () => {
                 spacing={5}
             >
                 {data?.map((coin) => {
-                    const { current_price, id, image, market_cap,
-                        market_cap_change_percentage_24h, market_cap_rank, name } = coin
-
                     return (
                         <CoinCard
-                            change={market_cap_change_percentage_24h}
-                            image={image}
-                            key={id}
-                            market_cap={market_cap}
-                            name={name}
-                            price={current_price}
-                            rank={market_cap_rank}
+                            coin={coin}
+                            key={coin.id}
                         />
                     )
                 })}

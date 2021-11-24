@@ -3,6 +3,7 @@ import {
     Grid,
     Paper,
 } from '@mui/material'
+import { millify } from 'millify'
 import React from 'react'
 
 import { useGetGlobalQuery } from '../../../pages/api/geckoApi'
@@ -10,7 +11,6 @@ import { HomepageStatsCard } from '../HomepageStatsCard'
 
 export const HomepageStats = () => {
     const { data } = useGetGlobalQuery()
-    console.log(data)
 
     return (
         <Box
@@ -34,16 +34,12 @@ export const HomepageStats = () => {
                     container={true}
                 >
                     <HomepageStatsCard
-                        title="Total Coins"
-                        value={data?.data?.active_cryptocurrencies}
+                        title="Total Currencies"
+                        value={data?.totalCurrencies}
                     />
                     <HomepageStatsCard
                         title="Total Markets"
-                        value={data?.data.markets}
-                    />
-                    <HomepageStatsCard
-                        title="Total Exchanges"
-                        value={10}
+                        value={data?.markets}
                     />
                 </Grid>
             </Paper>

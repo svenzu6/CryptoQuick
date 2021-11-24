@@ -1,8 +1,5 @@
+import type { CoinType } from '../../pages/api/types'
+
 export type CoinCardProps = {
-    name: string
-    rank: number
-    price: number
-    market_cap: number
-    change: number
-    image: string
+    coin: CoinType
 }
