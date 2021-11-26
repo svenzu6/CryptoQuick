@@ -1,4 +1,4 @@
 export type HomepageStatsCardProps = {
     title: string
-    value?: number
+    value?: number | string
 }

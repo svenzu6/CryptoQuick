@@ -3,7 +3,6 @@ import {
     Grid,
     Paper,
 } from '@mui/material'
-import { millify } from 'millify'
 import React from 'react'
 
 import { useGetGlobalQuery } from '../../../pages/api/geckoApi'
@@ -40,6 +39,10 @@ export const HomepageStats = () => {
                     <HomepageStatsCard
                         title="Total Markets"
                         value={data?.markets}
+                    />
+                    <HomepageStatsCard
+                        title="Daily Market Cap Change"
+                        value={`${data?.marketCapChange.toFixed(2)}%`}
                     />
                 </Grid>
             </Paper>

@@ -5,17 +5,14 @@ import {
 
 import { geckoRequest } from '../../utils'
 
-import type { GetGlobalType } from './types/getGlobal'
+import type {
+    GetGlobalType,
+    GlobalStats,
+} from './types/getGlobal'
 import type {
     CoinType,
     GetListType,
 } from './types/getList'
-
-type GlobalStats = {
-    totalMarketCap: number
-    markets: number
-    totalCurrencies: number
-}
 
 export const geckoApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://api.coingecko.com/api/v3' }),
@@ -23,9 +20,8 @@ export const geckoApi = createApi({
         getGlobal: builder.query<GlobalStats, void>({
             query: () => geckoRequest('/global'),
             transformResponse: (response: GetGlobalType) => {
-            console.log(response)
-
                 return {
+                    marketCapChange: response.data.market_cap_change_percentage_24h_usd,
                     markets: response.data.markets,
                     totalCurrencies: response.data.active_cryptocurrencies,
                 }

@@ -5,6 +5,11 @@ export type GetGlobalType = {
 export type GlobalType ={
     active_cryptocurrencies: number
     markets: number
-    total_market_cap: Record<string, number>
     market_cap_change_percentage_24h_usd: number
+}
+
+export type GlobalStats = {
+    markets: number
+    totalCurrencies: number
+    marketCapChange: number
 }
