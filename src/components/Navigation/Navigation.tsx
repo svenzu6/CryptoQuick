@@ -63,6 +63,8 @@ export const Navigation = () => {
                         label="Cryptocurrencies"
                     />
                     <Breadcrumb
+                        component="a"
+                        href="/exchange"
                         icon={<SwapHorizIcon fontSize="small" />}
                         label="Exchange"
                     />

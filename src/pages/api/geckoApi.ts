@@ -6,6 +6,10 @@ import {
 import { geckoRequest } from '../../utils'
 
 import type {
+    ExchangesStats,
+    ExchangesTypes,
+} from './types/getExchanges'
+import type {
     GetGlobalType,
     GlobalStats,
 } from './types/getGlobal'
@@ -17,6 +21,21 @@ import type {
 export const geckoApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://api.coingecko.com/api/v3' }),
     endpoints: (builder) => ({
+        getExchanges: builder.query<ExchangesStats[], void>({
+            query: () => geckoRequest('/exchanges?per_page=50&page=1'),
+            transformResponse: (response: ExchangesTypes[]) => {
+                return response.map((exchange) => {
+                    return {
+                        id: exchange.id,
+                        image: exchange.image,
+                        name: exchange.name,
+                        rank: exchange.trust_score_rank,
+                        tradeVolume: exchange.trade_volume_24h_btc,
+                        url: exchange.url,
+                    }
+                })
+            },
+        }),
         getGlobal: builder.query<GlobalStats, void>({
             query: () => geckoRequest('/global'),
             transformResponse: (response: GetGlobalType) => {
@@ -50,4 +69,4 @@ export const geckoApi = createApi({
     reducerPath: 'geckoApi',
 })
 
-export const { useGetGlobalQuery, useGetListQuery } = geckoApi
+export const { useGetExchangesQuery, useGetGlobalQuery, useGetListQuery } = geckoApi
