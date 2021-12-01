@@ -1,11 +1,10 @@
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import HomeIcon from '@mui/icons-material/Home'
-import LightbulbIcon from '@mui/icons-material/Lightbulb'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import {
     Box,
+    Link,
     Toolbar,
-    Typography,
 } from '@mui/material'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import * as React from 'react'
@@ -30,16 +29,14 @@ export const Navigation = () => {
                     maxWidth: 800,
                 }}
             >
-                <Typography
-                    align="center"
-                    color="inherit"
-                    component="h2"
-                    noWrap={true}
-                    sx={{ flex: 1 }}
+                <Link
+                    color="secondary"
+                    href="/"
+                    underline="none"
                     variant="h4"
                 >
                     CryptoQuick
-                </Typography>
+                </Link>
             </Toolbar>
             <Toolbar
                 component="nav"
@@ -67,10 +64,6 @@ export const Navigation = () => {
                         href="/exchange"
                         icon={<SwapHorizIcon fontSize="small" />}
                         label="Exchange"
-                    />
-                    <Breadcrumb
-                        icon={<LightbulbIcon fontSize="small" />}
-                        label="News"
                     />
                 </Breadcrumbs>
             </Toolbar>
