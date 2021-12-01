@@ -42,12 +42,18 @@ export const Exchange = () => {
 
     return (
         <Box
-            sx={{ alignItems: 'center',
+            sx={{
+                alignItems: 'center',
                 display: 'flex',
-                justifyContent: 'center' }}
+                justifyContent: 'center',
+            }}
         >
             <TableContainer
-                sx={{ maxWidth: 1000, minWidth: 700, padding: 5 }}
+                sx={{
+                    maxWidth: 1000,
+                    minWidth: 700,
+                    padding: 5,
+                }}
             >
                 <Table
                     aria-label="customized table"
@@ -65,7 +71,6 @@ export const Exchange = () => {
                             <StyledTableCell align="right">
                                 Web Page
                             </StyledTableCell>
-
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -81,7 +86,6 @@ export const Exchange = () => {
                                             height={30}
                                             src={exchange.image}
                                         />
-
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         {exchange.name}

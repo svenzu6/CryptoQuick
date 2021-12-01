@@ -52,7 +52,10 @@ export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
                             </Typography>
                             <Avatar
                                 src={image}
-                                sx={{ height: 30, width: 30 }}
+                                sx={{
+                                    height: 30,
+                                    width: 30,
+                                }}
                                 variant="rounded"
                             />
                         </Box>
