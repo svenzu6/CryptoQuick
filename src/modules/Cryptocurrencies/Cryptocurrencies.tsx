@@ -1,12 +1,14 @@
 import {
     Box,
-    CircularProgress,
     Grid,
     TextField,
 } from '@mui/material'
 import React, { useState } from 'react'
 
-import { CoinCard } from '../../components/CoinCard'
+import {
+    CoinCard,
+    Loading,
+} from '../../components'
 import type { CoinType } from '../../pages/api'
 import { useGetListQuery } from '../../pages/api'
 
@@ -30,7 +32,9 @@ export const Cryptocurrencies: React.FunctionComponent = () => {
     }
 
     if (isLoading) {
-        return (<CircularProgress />)
+        return (
+            <Loading />
+        )
     }
 
     return (

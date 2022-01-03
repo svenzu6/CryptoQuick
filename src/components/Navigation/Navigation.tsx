@@ -1,12 +1,14 @@
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
-import HomeIcon from '@mui/icons-material/Home'
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
+import {
+    AttachMoney,
+    Home,
+    SwapHoriz,
+} from '@mui/icons-material'
 import {
     Box,
+    Breadcrumbs,
     Link,
     Toolbar,
 } from '@mui/material'
-import Breadcrumbs from '@mui/material/Breadcrumbs'
 import * as React from 'react'
 
 import { Breadcrumb } from './Navigation.styles'
@@ -29,7 +31,7 @@ export const Navigation = () => {
                 }}
             >
                 <Link
-                    color="secondary"
+                    color="#000000"
                     href="/"
                     underline="none"
                     variant="h4"
@@ -49,19 +51,19 @@ export const Navigation = () => {
                     <Breadcrumb
                         component="a"
                         href="/"
-                        icon={<HomeIcon fontSize="small" />}
+                        icon={<Home fontSize="small" />}
                         label="Home"
                     />
                     <Breadcrumb
                         component="a"
                         href="/cryptocurrencies"
-                        icon={<AttachMoneyIcon fontSize="small" />}
+                        icon={<AttachMoney fontSize="small" />}
                         label="Cryptocurrencies"
                     />
                     <Breadcrumb
                         component="a"
                         href="/exchanges"
-                        icon={<SwapHorizIcon fontSize="small" />}
+                        icon={<SwapHoriz fontSize="small" />}
                         label="Exchanges"
                     />
                 </Breadcrumbs>

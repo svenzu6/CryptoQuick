@@ -1,43 +1,32 @@
 import {
     Box,
     Link,
+    Table,
+    TableBody,
+    TableContainer,
+    TableHead,
+    TableRow,
 } from '@mui/material'
-import { styled } from '@mui/material/styles'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell, { tableCellClasses } from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
 import millify from 'millify'
 import * as React from 'react'
 
+import { Loading } from '../../components'
+import type { ExchangeType } from '../../pages/api'
 import { useGetExchangesQuery } from '../../pages/api'
 
+import {
+    StyledTableCell,
+    StyledTableRow,
+} from './Exchanges.styles'
+
 export const Exchanges = () => {
-    const { data } = useGetExchangesQuery()
+    const { data, isLoading } = useGetExchangesQuery()
 
-    const StyledTableCell = styled(TableCell)(({ theme }) => ({
-        [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
-            color: theme.palette.common.white,
-        },
-        [`&.${tableCellClasses.body}`]: {
-            fontSize: 14,
-        },
-
-    }))
-
-    const StyledTableRow = styled(TableRow)(({ theme }) => ({
-        // hide last border
-        '&:last-child td, &:last-child th': {
-            border: 0,
-        },
-
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,
-        },
-    }))
+    if (isLoading) {
+        return (
+            <Loading />
+        )
+    }
 
     return (
         <Box
@@ -54,9 +43,7 @@ export const Exchanges = () => {
                     padding: 5,
                 }}
             >
-                <Table
-                    aria-label="customized table"
-                >
+                <Table>
                     <TableHead>
                         <TableRow>
                             <StyledTableCell />
@@ -73,7 +60,7 @@ export const Exchanges = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data?.map((exchange: ExchangesStats) => {
+                        {data?.map((exchange: ExchangeType) => {
                             return (
                                 <StyledTableRow key={exchange.id}>
                                     <StyledTableCell>
@@ -99,8 +86,7 @@ export const Exchanges = () => {
                                     </StyledTableCell>
                                 </StyledTableRow>
                             )
-                        }
-                        )}
+                        })}
                     </TableBody>
                 </Table>
             </TableContainer>

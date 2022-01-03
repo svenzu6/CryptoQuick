@@ -12,7 +12,12 @@ import * as React from 'react'
 import type { CoinCardProps } from './CoinCard.types'
 
 export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
-    const { currentPrice, image, marketCap, name } = props.coin
+    const {
+        currentPrice,
+        image,
+        marketCap,
+        name,
+    } = props.coin
 
     return (
         <Grid

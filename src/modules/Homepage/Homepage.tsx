@@ -7,13 +7,22 @@ import {
 import { Box } from '@mui/system'
 import React from 'react'
 
-import { CoinCard } from '../../components/CoinCard'
+import {
+    CoinCard,
+    Loading,
+} from '../../components'
 import { useGetListQuery } from '../../pages/api'
 
 import { HomepageStats } from './HomepageStats'
 
 export const Homepage = () => {
-    const { data } = useGetListQuery(10)
+    const { data, isLoading } = useGetListQuery(10)
+
+    if (isLoading) {
+        return (
+            <Loading />
+        )
+    }
 
     return (
         <Box>
@@ -32,7 +41,7 @@ export const Homepage = () => {
                 </Typography>
                 <Typography variant="h4">
                     <Link
-                        color="secondary"
+                        color="#000000"
                         href="/cryptocurrencies"
                         underline="hover"
                         variant="subtitle1"
