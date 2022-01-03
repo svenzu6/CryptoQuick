@@ -7,8 +7,8 @@ import {
 import React, { useState } from 'react'
 
 import { CoinCard } from '../../components/CoinCard'
-import { useGetListQuery } from '../../pages/api/geckoApi'
-import type { CoinType } from '../../pages/api/types'
+import type { CoinType } from '../../pages/api'
+import { useGetListQuery } from '../../pages/api'
 
 export const Cryptocurrencies: React.FunctionComponent = () => {
     const { data, isLoading } = useGetListQuery(100)

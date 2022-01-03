@@ -11,7 +11,6 @@ import * as React from 'react'
 
 import { Breadcrumb } from './Navigation.styles'
 
-// USE THIS FOR LINKS: https://mui.com/components/breadcrumbs/#breadcrumbs-with-icons
 export const Navigation = () => {
     return (
         <Box
@@ -61,9 +60,9 @@ export const Navigation = () => {
                     />
                     <Breadcrumb
                         component="a"
-                        href="/exchange"
+                        href="/exchanges"
                         icon={<SwapHorizIcon fontSize="small" />}
-                        label="Exchange"
+                        label="Exchanges"
                     />
                 </Breadcrumbs>
             </Toolbar>

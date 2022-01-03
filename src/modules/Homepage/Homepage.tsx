@@ -8,7 +8,7 @@ import { Box } from '@mui/system'
 import React from 'react'
 
 import { CoinCard } from '../../components/CoinCard'
-import { useGetListQuery } from '../../pages/api/geckoApi'
+import { useGetListQuery } from '../../pages/api'
 
 import { HomepageStats } from './HomepageStats'
 

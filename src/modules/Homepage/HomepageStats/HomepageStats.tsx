@@ -5,11 +5,11 @@ import {
 } from '@mui/material'
 import React from 'react'
 
-import { useGetGlobalQuery } from '../../../pages/api/geckoApi'
+import { useGetGlobalStatsQuery } from '../../../pages/api'
 import { HomepageStatsCard } from '../HomepageStatsCard'
 
 export const HomepageStats = () => {
-    const { data } = useGetGlobalQuery()
+    const { data } = useGetGlobalStatsQuery()
 
     return (
         <Box

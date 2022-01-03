@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
-import { geckoApi } from '../pages/api/geckoApi'
+import { api } from '../pages/api'
 
 export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
-        [...getDefaultMiddleware(), geckoApi.middleware],
+        [...getDefaultMiddleware(), api.middleware],
     reducer: {
-        [geckoApi.reducerPath]: geckoApi.reducer,
+        [api.reducerPath]: api.reducer,
     },
 })
 

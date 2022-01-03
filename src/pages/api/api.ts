@@ -3,27 +3,23 @@ import {
     fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react'
 
-import { geckoRequest } from '../../utils'
-
 import type {
-    ExchangesStats,
-    ExchangesTypes,
-} from './types/getExchanges'
-import type {
-    GetGlobalType,
-    GlobalStats,
-} from './types/getGlobal'
-import type {
+    CoinPayloadType,
     CoinType,
-    GetListType,
-} from './types/getList'
+    ExchangePayloadType,
+    ExchangeType,
+    GlobalStatsPayloadType,
+    GlobalStatsType,
+} from './api.types'
 
-export const geckoApi = createApi({
+export const api = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://api.coingecko.com/api/v3' }),
     endpoints: (builder) => ({
-        getExchanges: builder.query<ExchangesStats[], void>({
-            query: () => geckoRequest('/exchanges?per_page=50&page=1'),
-            transformResponse: (response: ExchangesTypes[]) => {
+        getExchanges: builder.query<ExchangeType[], void>({
+            query: () => {
+                return { url: '/exchanges?per_page=50&page=1' }
+            },
+            transformResponse: (response: ExchangePayloadType[]) => {
                 return response.map((exchange) => {
                     return {
                         id: exchange.id,
@@ -36,9 +32,11 @@ export const geckoApi = createApi({
                 })
             },
         }),
-        getGlobal: builder.query<GlobalStats, void>({
-            query: () => geckoRequest('/global'),
-            transformResponse: (response: GetGlobalType) => {
+        getGlobalStats: builder.query<GlobalStatsType, void>({
+            query: () => {
+                return { url: '/global' }
+            },
+            transformResponse: (response: GlobalStatsPayloadType) => {
                 return {
                     marketCapChange: response.data.market_cap_change_percentage_24h_usd,
                     markets: response.data.markets,
@@ -47,9 +45,12 @@ export const geckoApi = createApi({
             },
         }),
         getList: builder.query<CoinType[], number>({
-            query: (count) =>
-                geckoRequest(`/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${count}&page=1`),
-            transformResponse: (response: GetListType[]) => {
+            query: (count) => {
+                return {
+                    url: `/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${count}&page=1`,
+                }
+            },
+            transformResponse: (response: CoinPayloadType[]) => {
                 return response.map((coin) => {
                     return {
                         currentPrice: coin.current_price,
@@ -66,7 +67,7 @@ export const geckoApi = createApi({
             },
         }),
     }),
-    reducerPath: 'geckoApi',
+    reducerPath: 'api',
 })
 
-export const { useGetExchangesQuery, useGetGlobalQuery, useGetListQuery } = geckoApi
+export const { useGetExchangesQuery, useGetGlobalStatsQuery, useGetListQuery } = api

@@ -12,10 +12,9 @@ import TableRow from '@mui/material/TableRow'
 import millify from 'millify'
 import * as React from 'react'
 
-import { useGetExchangesQuery } from '../../pages/api/geckoApi'
-import type { ExchangesStats } from '../../pages/api/types/getExchanges'
+import { useGetExchangesQuery } from '../../pages/api'
 
-export const Exchange = () => {
+export const Exchanges = () => {
     const { data } = useGetExchangesQuery()
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
