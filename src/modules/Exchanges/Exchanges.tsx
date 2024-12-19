@@ -46,7 +46,6 @@ export const Exchanges = () => {
                     <TableHead>
                         <TableRow>
                             <StyledTableCell />
-                            <StyledTableCell />
                             <StyledTableCell>
                                 Exchanges
                             </StyledTableCell>
