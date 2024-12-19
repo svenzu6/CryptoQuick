@@ -1,5 +1,4 @@
 import {
-    AttachMoney,
     Home,
     SwapHoriz,
 } from '@mui/icons-material'
@@ -54,12 +53,7 @@ export const Navigation = () => {
                         icon={<Home fontSize="small" />}
                         label="Home"
                     />
-                    <Breadcrumb
-                        component="a"
-                        href="/cryptocurrencies"
-                        icon={<AttachMoney fontSize="small" />}
-                        label="Cryptocurrencies"
-                    />
+
                     <Breadcrumb
                         component="a"
                         href="/exchanges"

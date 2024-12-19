@@ -11,7 +11,6 @@ import millify from 'millify'
 import * as React from 'react'
 
 import { Loading } from '../../components'
-import type { ExchangeType } from '../../pages/api'
 import { useGetExchangesQuery } from '../../pages/api'
 
 import {
@@ -60,18 +59,11 @@ export const Exchanges = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data?.map((exchange: ExchangeType) => {
+                        {data?.map((exchange, index) => {
                             return (
                                 <StyledTableRow key={exchange.id}>
                                     <StyledTableCell>
-                                        {exchange.rank}
-                                        .
-                                    </StyledTableCell>
-                                    <StyledTableCell>
-                                        <img
-                                            height={30}
-                                            src={exchange.image}
-                                        />
+                                        {index + 1}
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         {exchange.name}

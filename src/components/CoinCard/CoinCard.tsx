@@ -1,5 +1,4 @@
 import {
-    Avatar,
     Box,
     Card,
     CardActionArea,
@@ -13,11 +12,12 @@ import type { CoinCardProps } from './CoinCard.types'
 
 export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
     const {
-        currentPrice,
-        image,
+        coin, index,
+    } = props
+
+    const { currentPrice,
         marketCap,
-        name,
-    } = props.coin
+        name } = coin
 
     return (
         <Grid
@@ -51,18 +51,11 @@ export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
                                 gutterBottom={true}
                                 variant="h5"
                             >
-                                {marketCap.rank}
+                                {index + 1}
                                 {'. '}
                                 {name}
                             </Typography>
-                            <Avatar
-                                src={image}
-                                sx={{
-                                    height: 30,
-                                    width: 30,
-                                }}
-                                variant="rounded"
-                            />
+
                         </Box>
                         <Typography
                             color="text.primary"
@@ -74,13 +67,7 @@ export const CoinCard: React.FunctionComponent<CoinCardProps> = (props) => {
                             color="text.primary"
                             variant="body2"
                         >
-                            {`Market Cap: ${millify(marketCap.value)}$`}
-                        </Typography>
-                        <Typography
-                            color="text.primary"
-                            variant="body2"
-                        >
-                            {`Daily Change: ${millify(marketCap.dailyChange)}%`}
+                            {`1 day volume: ${millify(marketCap.dailyChange)}`}
                         </Typography>
                     </Box>
                 </CardActionArea>

@@ -13,7 +13,7 @@ import type { CoinType } from '../../pages/api'
 import { useGetListQuery } from '../../pages/api'
 
 export const Cryptocurrencies: React.FunctionComponent = () => {
-    const { data, isLoading } = useGetListQuery(100)
+    const { data, isLoading } = useGetListQuery()
 
     const [cryptos, setCryptos] = useState<CoinType[]>(data ?? [])
 
@@ -63,10 +63,11 @@ export const Cryptocurrencies: React.FunctionComponent = () => {
                 p={10}
                 rowSpacing={2}
             >
-                {cryptos?.map((coin) => {
+                {cryptos?.map((coin, index) => {
                     return (
                         <CoinCard
                             coin={coin}
+                            index={index}
                             key={coin.id}
                         />
                     )

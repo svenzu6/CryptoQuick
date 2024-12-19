@@ -1,22 +1,36 @@
 import {
+    Box,
     Grid,
-    Link,
     Stack,
+    TextField,
     Typography,
 } from '@mui/material'
-import { Box } from '@mui/system'
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
     CoinCard,
     Loading,
 } from '../../components'
+import type { CoinType } from '../../pages/api'
 import { useGetListQuery } from '../../pages/api'
 
-import { HomepageStats } from './HomepageStats'
-
 export const Homepage = () => {
-    const { data, isLoading } = useGetListQuery(10)
+    const { data, isLoading } = useGetListQuery()
+    const [cryptos, setCryptos] = useState<CoinType[]>(data ?? [])
+
+    React.useEffect(() => {
+        if (data) {
+            setCryptos(data)
+        }
+    }, [data])
+
+    const onSearch = (event: React.ChangeEvent<{ value: string }>) => {
+        const filteredData = data?.filter((item) => {
+            return item.name.toLowerCase().includes(event.target.value)
+        }) ?? []
+
+        setCryptos(filteredData)
+    }
 
     if (isLoading) {
         return (
@@ -26,7 +40,22 @@ export const Homepage = () => {
 
     return (
         <Box>
-            <HomepageStats />
+            <Box
+                sx={{
+                    alignContent: 'center',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    paddingTop: 5,
+                }}
+            >
+                <TextField
+                    id="outlined-basic"
+                    label="Search Crypto"
+                    onChange={onSearch}
+                    size="small"
+                    variant="outlined"
+                />
+            </Box>
             <Stack
                 direction="row"
                 pl={10}
@@ -39,16 +68,6 @@ export const Homepage = () => {
                 <Typography variant="h4">
                     Top 10 cryptos
                 </Typography>
-                <Typography variant="h4">
-                    <Link
-                        color="#000000"
-                        href="/cryptocurrencies"
-                        underline="hover"
-                        variant="subtitle1"
-                    >
-                        Show More
-                    </Link>
-                </Typography>
             </Stack>
             <Grid
                 alignItems="center"
@@ -59,10 +78,11 @@ export const Homepage = () => {
                 rowSpacing={2}
                 spacing={5}
             >
-                {data?.map((coin) => {
+                {cryptos?.map((coin, index) => {
                     return (
                         <CoinCard
                             coin={coin}
+                            index={index}
                             key={coin.id}
                         />
                     )

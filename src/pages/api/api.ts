@@ -12,29 +12,34 @@ import type {
     GlobalStatsType,
 } from './api.types'
 
+const headers = {
+    Accept: 'text/plain',
+    'X-CoinAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
+}
 export const api = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://api.coingecko.com/api/v3' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://rest.coinapi.io/v1' }),
     endpoints: (builder) => ({
         getExchanges: builder.query<ExchangeType[], void>({
             query: () => {
-                return { url: '/exchanges?per_page=50&page=1' }
+                return {
+                    headers: headers,
+                    url: '/exchanges',
+                }
             },
             transformResponse: (response: ExchangePayloadType[]) => {
                 return response.map((exchange) => {
                     return {
-                        id: exchange.id,
-                        image: exchange.image,
+                        id: exchange.exchange_id,
                         name: exchange.name,
-                        rank: exchange.trust_score_rank,
-                        tradeVolume: exchange.trade_volume_24h_btc,
-                        url: exchange.url,
+                        tradeVolume: exchange.volume_1day_usd / 100,
+                        url: exchange.website,
                     }
                 })
             },
         }),
         getGlobalStats: builder.query<GlobalStatsType, void>({
             query: () => {
-                return { url: '/global' }
+                return { url: '/v1/global-metrics/quotes/latest' }
             },
             transformResponse: (response: GlobalStatsPayloadType) => {
                 return {
@@ -44,22 +49,20 @@ export const api = createApi({
                 }
             },
         }),
-        getList: builder.query<CoinType[], number>({
-            query: (count) => {
+        getList: builder.query<CoinType[], void>({
+            query: () => {
                 return {
-                    url: `/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${count}&page=1`,
+                    headers: headers,
+                    url: '/assets?filter_asset_id=BTC,ETH,BNB,XRP,ADA,SOL,DOT,DOGE,USDC,TRX',
                 }
             },
             transformResponse: (response: CoinPayloadType[]) => {
                 return response.map((coin) => {
                     return {
-                        currentPrice: coin.current_price,
-                        id: coin.id,
-                        image: coin.image,
+                        currentPrice: coin.price_usd,
+                        id: coin.asset_id,
                         marketCap: {
-                            dailyChange: coin.market_cap_change_percentage_24h,
-                            rank: coin.market_cap_rank,
-                            value: coin.market_cap,
+                            dailyChange: coin.volume_1day_usd,
                         },
                         name: coin.name,
                     }
